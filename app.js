@@ -1,9 +1,9 @@
 const express = require('express');
-const bodyParser = require('body-parser');
+const bodyParser = require('body-parser'); // transforme le corp des requetes en objet JS utilisable
 const mongoose = require('mongoose');
-const path = require('path');
+const path = require('path'); // nous donne access au chemin des fichiers
 
-const stuffRoutes = require('./routes/stuff');
+const sauceRoutes = require('./routes/sauce');
 const userRoutes = require('./routes/user');
 
 mongoose.connect('mongodb+srv://andre:AndreaG@cluster0-4bten.mongodb.net/test?retryWrites=true&w=majority',
@@ -24,11 +24,11 @@ app.use((req, res, next) => {
     next(); // j'appelle next() pour passer au middleware d'apres
 });
 
-app.use(bodyParser.json());
+app.use(bodyParser.json()); // json c'est une methode de l'objet bodyParser
 
 // creation des middleware
-app.use('/images', express.static(path.join(__dirname, 'images')));
-app.use('/api/sauces', stuffRoutes);
-app.use('/api/auth', userRoutes);
+app.use('/images', express.static(path.join(__dirname, 'images'))); // pourque app.js serve le dossier /images 
+app.use('/api/sauces', sauceRoutes); // pour le CRUD des sauces - se refer à ./routes/sauces.js
+app.use('/api/auth', userRoutes); // pour l'autentification de l'utilisateur - se refer à ./routes/user.js
 
 module.exports = app; // on export l'application

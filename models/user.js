@@ -1,3 +1,5 @@
+// SCHEMA POUR STOCKER LES DONNÉ UTILISATEUR DANS LA BASE DE DONNÉ
+
 const mongoose = require('mongoose');
 const uniqueValidator = require('mongoose-unique-validator');
 
@@ -6,6 +8,6 @@ const userSchema = mongoose.Schema({
     password: { type: String, required: true }
 });
 
-userSchema.plugin(uniqueValidator);
+userSchema.plugin(uniqueValidator); // model pour eviter que plusieurs utilisateurs s'inscrive avec le meme addresse email
 
 module.exports = mongoose.model('User', userSchema);
