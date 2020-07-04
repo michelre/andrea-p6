@@ -2,7 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser'); // transforme le corp des requetes en objet JS utilisable
 const mongoose = require('mongoose');
 const path = require('path'); // nous donne access au chemin des fichiers
-require('dotenv').config()
+require('dotenv').config({ path: process.cwd() + '/env' })
 
 const sauceRoutes = require('./routes/sauce');
 const userRoutes = require('./routes/user');
