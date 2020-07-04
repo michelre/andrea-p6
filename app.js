@@ -2,11 +2,12 @@ const express = require('express');
 const bodyParser = require('body-parser'); // transforme le corp des requetes en objet JS utilisable
 const mongoose = require('mongoose');
 const path = require('path'); // nous donne access au chemin des fichiers
+require('dotenv').config()
 
 const sauceRoutes = require('./routes/sauce');
 const userRoutes = require('./routes/user');
 
-mongoose.connect('mongodb+srv://andre:AndreaG@cluster0-4bten.mongodb.net/test?retryWrites=true&w=majority',
+mongoose.connect(`mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@${process.env.DB_HOST}/${process.env.DB_NAME}?retryWrites=true&w=majority`,
     {
         useNewUrlParser: true,
         useUnifiedTopology: true
